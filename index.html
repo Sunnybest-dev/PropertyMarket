@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropertyMarket</title>
+
+    <!-- tailwind css linking -->
+     <script src="https://cdn.tailwindcss.com"></script>
+     <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out; }
+        .animate-slide-in { animation: slideIn 0.3s ease-out; }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+     </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <!-- header section -->
+        <header class="bg-white shadow sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 py-3">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <img src="" alt="PropertyMarket" class="h-8 w-8">
+                        <h1 class="text-xl font-bold text-orange-600">PropertyMarket</h1>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <input id="SearchInput" type="text" placeholder="Search houses, lands...." class="hidden sm:block w-64 border-orange-400 border border-1 shadow rounded-md px-3 py-2 text-sm focus:ring-0 focus:border-orange-400 outline-none placeholder:text-orange-700">
+                        <nav class="hidden md:flex items-center gap-6">
+                            <a href="#" class="hover:text-orange-600">Marketplace</a>
+                            <a href="#" class="hover:text-orange-600">Blog</a>
+                            <a href="#" class="hover:text-orange-600">Contact</a>
+                            <a href="#" class="bg-orange-600 text-white px-4 py-1 rounded hover:bg-orange-700">Post Ad</a>
+                            <a href="#" class="border border-orange-600 text-orange-600 px-4 py-1 rounded hover:bg-orange-600 hover:text-white">Login</a>
+                        </nav>
+                        <button id="hamburger" class="md:hidden p-2">
+                            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+                <div class="px-4 py-3 space-y-3">
+                    <a href="#" class="block py-2 hover:text-orange-600">Marketplace</a>
+                    <a href="#" class="block py-2 hover:text-orange-600">Blog</a>
+                    <a href="#" class="block py-2 hover:text-orange-600">Contact</a>
+                    <div class="flex gap-4 px-4 py-3 text-sm overflow-x-auto">
+                        <button class="category-btn whitespace-nowrap" data-category="All">All</button>
+                        <button class="category-btn whitespace-nowrap" data-category="House">House</button>
+                        <button class="category-btn whitespace-nowrap" data-category="Land">Land</button>
+                        <button class="category-btn whitespace-nowrap" data-category="Shops">Shops</button>
+                        <button class="category-btn whitespace-nowrap" data-category="Cars">Cars</button>
+                    </div>
+                    <div class="flex gap-2 pt-2">
+                        <a href="#" class="flex-1 bg-orange-600 text-white px-4 py-2 rounded text-center">Post Ad</a>
+                        <a href="#" class="flex-1 border border-orange-600 text-orange-600 px-4 py-2 rounded text-center">Login</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+<!-- MAin Section -->
+          <main class="max-w-7xl mx-auto px-4 mt-6 grid grid-cols-1 lg:grid-cols-5 gap-6">
+            
+            <!-- side bar -->
+             <aside class="hidden lg:block bg-white rounded-xl shadow-md p-6 animate-slide-in">
+                <h3 class="font-bold text-lg mb-4 text-gray-800">Categories</h3>
+                <ul class="space-y-3">
+                    <li class="category-btn cursor-pointer px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200" data-category="All">All Properties</li>
+                    <li class="category-btn cursor-pointer px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200" data-category="House">Houses</li>
+                    <li class="category-btn cursor-pointer px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200" data-category="Land">Land</li>
+                    <li class="category-btn cursor-pointer px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200" data-category="Shops">Shops</li>
+                    <li class="category-btn cursor-pointer px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200" data-category="Cars">Cars</li>
+                </ul>
+             </aside>
+
+             <!-- major content -->
+                <section class="lg:col-span-4">
+
+                    <!-- Hero Section -->
+                     <div class="bg-white rounded shadow overflow-hidden mb-6">
+                        <img src="https://unsplash.com/photos/3d-render-modern-building-exterior-2MA8dFvOMec" alt="" class="w-full h-64 object-cover">
+                     </div>
+
+                     <!-- list section -->
+                        <h2 class="text-lg font-semibold mb-4 animate-fade-in">Featured Listings</h2>
+                        <div id="listings" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+                        </div>
+                </section>
+          </main>
+
+          <!-- footer -->
+           <footer class="mt-12 bg-black py-6 text-center text-sm text-gray-500">
+                &copy; 2026 PropertyMarket Online
+           </footer>
+
+           <script src="function.js"></script>
+</body>
+</html>
