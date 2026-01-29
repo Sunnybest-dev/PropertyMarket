@@ -31,6 +31,15 @@
      </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
+    <script>
+        // Force page to scroll to top on refresh
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        window.addEventListener('beforeunload', function() {
+            window.scrollTo(0, 0);
+        });
+    </script>
     <!-- Preloader -->
     <div id="preloader" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
         <div class="text-center">
@@ -51,19 +60,19 @@
             <div class="max-w-7xl mx-auto px-4 py-3">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4">
-                        <img src="" alt="PropertyMarket" class="h-8 w-8">
-                        <h1 class="text-xl font-bold text-orange-600">PropertyMarket</h1>
+                        <img src="/images/logo.jpg" alt="PropertyMarket" class="h-12 w-full">
+                        <!-- <h1 class="text-xl font-bold text-orange-600">PropertyMarket</h1> -->
                     </div>
                     <div class="flex items-center gap-4">
-                        <input id="SearchInput" type="text" placeholder="Search houses, lands...." class="hidden sm:block w-64 border-orange-400 border border-1 shadow rounded-md px-3 py-2 text-sm focus:ring-0 focus:border-orange-400 outline-none placeholder:text-orange-700">
+                        <input id="SearchInput" type="text" placeholder="Properties......" class="hidden sm:block w-64 border-orange-400 border border-1 shadow rounded-md px-3 py-2 text-sm focus:ring-0 focus:border-orange-400 outline-none placeholder:text-orange-700">
                         <nav class="hidden md:flex items-center gap-6">
-                            <a href="#" class="hover:text-orange-600">Marketplace</a>
-                            <a href="#" class="hover:text-orange-600">Blog</a>
-                            <a href="#" class="hover:text-orange-600">Contact</a>
-                            <a href="#" class="bg-orange-600 text-white px-4 py-1 rounded hover:bg-orange-700">Post Ad</a>
-                            <a href="login.html" class="border border-orange-600 text-orange-600 px-4 py-1 rounded hover:bg-orange-600 hover:text-white">Login</a>
+                            <a href="#" class="hover:text-orange-600 transition-colors">Marketplace</a>
+                            <a href="blog.html" class="hover:text-orange-600 transition-colors">Blog</a>
+                            <a href="#" class="hover:text-orange-600 transition-colors">Contact</a>
+                            <a href="#" class="bg-orange-600 text-white px-4 py-1 rounded hover:bg-orange-700 transition-colors">Post Ad</a>
+                            <a href="login.html" class="border border-orange-600 text-orange-600 px-4 py-1 rounded hover:bg-orange-600 hover:text-white transition-colors">Login</a>
                         </nav>
-                        <button id="hamburger" class="md:hidden p-2">
+                        <button id="hamburger" class="block md:hidden p-2 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors">
                             <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                             </svg>
@@ -75,7 +84,7 @@
             <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
                 <div class="px-4 py-3 space-y-3">
                     <a href="#" class="mobile-nav-link block py-2 hover:text-orange-600">Marketplace</a>
-                    <a href="#" class="mobile-nav-link block py-2 hover:text-orange-600">Blog</a>
+                    <a href="blog.html" class="mobile-nav-link block py-2 hover:text-orange-600">Blog</a>
                     <a href="#" class="mobile-nav-link block py-2 hover:text-orange-600">Contact</a>
                     <div class="flex gap-4 px-4 py-3 text-sm overflow-x-auto">
                         <button class="category-btn mobile-nav-link whitespace-nowrap" data-category="All">All</button>
@@ -92,6 +101,28 @@
             </div>
         </header>
 
+<!-- Hero Section -->
+        <section class="relative h-96 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1973&q=80');">
+            <!-- Black gradient overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
+            
+            <!-- Hero content -->
+            <div class="relative z-10 flex items-center justify-center h-full">
+                <div class="text-center text-white px-4">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">Find Your Dream Property</h1>
+                    <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto animate-fade-in">Discover the perfect home, land, or investment opportunity in Nigeria's premier property marketplace</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
+                        <button class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                           <a href="/properties.html">Browse Properties</a> 
+                        </button>
+                        <button class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-lg font-semibold transition-colors">
+                            <a href="/post.html">Post Your Property</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 <!-- MAin Section -->
           <main class="max-w-7xl mx-auto px-4 mt-6 grid grid-cols-1 lg:grid-cols-5 gap-6">
             
@@ -106,7 +137,7 @@
                     <li class="category-btn cursor-pointer px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-all duration-200" data-category="Cars">Cars</li>
                 </ul>
                 
-                <!-- YouTube Video Widget -->
+                <!-- YouTube Video -->
                 <div class="mt-6 bg-gray-50 rounded-xl p-4">
                     <h4 class="font-bold text-md mb-3 text-gray-800">Latest Video</h4>
                     <div id="youtube-widget" class="space-y-3">
@@ -129,6 +160,83 @@
                             <span>₦1M+</span>
                         </div>
                     </div>
+                </div>
+             </aside>
+
+            <!-- Main Content -->
+            <div class="lg:col-span-4 space-y-6">
+                <!-- Hero Section -->
+                <!-- <section class="bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl p-8 animate-fade-in">
+                    <div class="max-w-2xl">
+                        <h1 class="text-4xl font-bold mb-4">Find Your Dream Property</h1>
+                        <p class="text-orange-100 mb-6">Discover the best houses, lands, shops, and cars in Nigeria's premier marketplace</p>
+                        <div class="flex gap-4">
+                            <a href="properties.html" class="bg-white text-orange-600 px-6 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-colors">Browse Properties</a>
+                            <a href="post.html" class="border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-colors">Post Ad</a>
+                        </div>
+                    </div>
+                </section> -->
+
+                <!-- Property Listings -->
+                <section>
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Featured Properties</h2>
+                        <a href="properties.html" class="text-orange-600 hover:text-orange-700 font-medium">View All →</a>
+                    </div>
+                    <div id="listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Listings will be populated by JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-12 mt-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <img src="/images/logo.jpg" alt="PropertyMarket" class="h-8">
+                            <span class="text-xl font-bold">PropertyMarket</span>
+                        </div>
+                        <p class="text-gray-400">Your trusted partner in finding the perfect property.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="index.html" class="hover:text-white">Home</a></li>
+                            <li><a href="properties.html" class="hover:text-white">Properties</a></li>
+                            <li><a href="blog.html" class="hover:text-white">Blog</a></li>
+                            <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Services</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="properties.html" class="hover:text-white">Buy Property</a></li>
+                            <li><a href="properties.html" class="hover:text-white">Rent Property</a></li>
+                            <li><a href="post.html" class="hover:text-white">Sell Property</a></li>
+                            <li><a href="contact.html" class="hover:text-white">Property Management</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Contact Info</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li>📧 info@propertymarket.com</li>
+                            <li>📞 +234 123 456 7890</li>
+                            <li>📍 Lagos, Nigeria</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                    <p>&copy; 2024 PropertyMarket. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="function.js"></script>
+    </body>
+</html>
                 </div>
 
                 <!-- Location Filter -->
@@ -175,7 +283,7 @@
                 <div class="mt-6 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-4 text-white">
                     <h4 class="font-bold text-md mb-3">Market Stats</h4>
                     <div class="grid grid-cols-2 gap-3 text-center">
-                        <div>
+                        <div class="md:w-">
                             <div class="text-lg font-bold">2,847</div>
                             <div class="text-xs opacity-90">Active Listings</div>
                         </div>
@@ -242,7 +350,7 @@
                                 <li><a href="#" class="hover:text-white transition-colors">Home</a></li>
                                 <li><a href="#" class="hover:text-white transition-colors">Marketplace</a></li>
                                 <li><a href="login.html" class="hover:text-white transition-colors">Login</a></li>
-                                <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                                <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
                             </ul>
                         </div>
 
@@ -250,7 +358,7 @@
                             <h3 class="text-orange-500 font-semibold mb-4">Legal</h3>
                             <ul class="space-y-2">
                                 <li><a href="#" class="hover:text-white transition-colors">Disclaimer</a></li>
-                                <li><a href="#" class="hover:text-white transition-colors">Report</a></li>
+                                <li><a href="#" class="hover:text-white transition-colors">Report Scam</a></li>
                                 <li><a href="#" class="hover:text-white transition-colors">Terms & Conditions</a></li>
                                 <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
                             </ul>

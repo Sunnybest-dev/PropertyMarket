@@ -32,7 +32,7 @@ const listingsData =[
     image: "/images/land3.jpg"
     },    
     {
-    title : "Commericial Land",
+    title : "Commericial Toyota",
     price : "150,000,000",
     Category : "Cars",
     image: "/images/car2.jpg"
@@ -44,25 +44,25 @@ const listingsData =[
     image: "/images/hero.jpg"
     },    
     {
-    title : "Shop - Wuse",
+    title : "Shop - Mararaba",
     price : "120,000,000",
     Category : "Shops",
     image: "/images/shop2.jpg"
     },    
     {
-    title : "Shop - Wuse",
+    title : "Kwuba Extension",
     price : "120,000,000",
     Category : "land",
     image: "/images/land1.jpg"
     },    
     {
-    title : "Shop - Wuse",
+    title : "GLK Mecedez Benz 2015",
     price : "120,000,000",
     Category : "Cars",
-    image: "/images/car1.jpg"
+    image: "/images/car2.jpg"
     },    
     {
-    title : "Shop - Wuse",
+    title : "Open Square - Grarimpa",
     price : "120,000,000",
     Category : "land",
     image: "/images/land2.jpg"
@@ -89,7 +89,7 @@ function renderListings(){
     filtered.forEach((item, index) =>{
         setTimeout(() => {
             listingsContainer.innerHTML += `
-            <div class="bg-white rounded-xl shadow-md card-hover overflow-hidden group animate-fade-in flex flex-col h-full" style="animation-delay: ${index * 0.1}s">
+            <div class="bg-white rounded shadow-md card-hover overflow-hidden group animate-fade-in flex flex-col h-full" style="animation-delay: ${index * 0.1}s">
                 <div class="relative overflow-hidden">
                     <img src="${item.image}" alt="${item.title}" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute top-3 right-3 bg-orange-600 text-white px-2 py-1 rounded-full text-xs font-semibold">
@@ -97,7 +97,7 @@ function renderListings(){
                     </div>
                 </div>
                 <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="font-semibold text-gray-800 mb-2 h-12 line-clamp-2 group-hover:text-orange-600 transition-colors">${item.title}</h3>
+                    <h3 class="font-semibold text-gray-800 mb-2 h-12 line-clamp-2 group-hover:text-orange-600 transition-colors text-center">${item.title}</h3>
                     <p class="text-2xl font-bold text-orange-600 mb-3">${formatPrice(item.price)}</p>
                     <button class="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 px-4 rounded-lg font-medium hover:from-orange-600 hover:to-orange-700 transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg mt-auto">
                         View Details
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Search with preloader
     searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-            showPreloader();
+            showPreloader('All');
             setTimeout(() => {
                 renderListings();
                 hidePreloader();

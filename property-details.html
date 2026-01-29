@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details - PropertyMarket</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <img src="/images/logo.jpg" alt="PropertyMarket" class="h-12 w-full">
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="hover:text-orange-600">Home</a>
+                    <a href="properties.html" class="hover:text-orange-600">Properties</a>
+                    <a href="blog.html" class="hover:text-orange-600">Blog</a>
+                    <a href="contact.html" class="hover:text-orange-600">Contact</a>
+                    <a href="login.html" class="border border-orange-600 text-orange-600 px-4 py-1 rounded hover:bg-orange-600 hover:text-white">Login</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="mb-6">
+            <a href="properties.html" class="text-orange-600 hover:text-orange-700">← Back to Properties</a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Property Images -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="relative">
+                        <img id="mainImage" src="/images/hero.jpg" alt="Property" class="w-full h-96 object-cover">
+                        <div class="absolute top-4 right-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            House
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="grid grid-cols-4 gap-2">
+                            <img src="/images/hero.jpg" alt="Image 1" class="w-full h-20 object-cover rounded cursor-pointer opacity-60 hover:opacity-100" onclick="changeMainImage(this.src)">
+                            <img src="/images/land1.jpg" alt="Image 2" class="w-full h-20 object-cover rounded cursor-pointer opacity-60 hover:opacity-100" onclick="changeMainImage(this.src)">
+                            <img src="/images/shop.jpg" alt="Image 3" class="w-full h-20 object-cover rounded cursor-pointer opacity-60 hover:opacity-100" onclick="changeMainImage(this.src)">
+                            <img src="/images/car1.jpg" alt="Image 4" class="w-full h-20 object-cover rounded cursor-pointer opacity-60 hover:opacity-100" onclick="changeMainImage(this.src)">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Description -->
+                <div class="bg-white rounded-xl shadow-sm p-6 mt-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Property Description</h2>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        This stunning 4-bedroom duplex is located in one of Abuja's most prestigious neighborhoods. 
+                        The property features modern architecture, spacious rooms, and high-quality finishes throughout. 
+                        Perfect for families looking for luxury living in a secure environment.
+                    </p>
+                    
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Features & Amenities</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <ul class="space-y-2 text-gray-600">
+                            <li>✓ 4 Spacious Bedrooms</li>
+                            <li>✓ 3 Modern Bathrooms</li>
+                            <li>✓ Large Living Room</li>
+                            <li>✓ Modern Kitchen</li>
+                        </ul>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>✓ Parking Space</li>
+                            <li>✓ Security System</li>
+                            <li>✓ Garden Area</li>
+                            <li>✓ 24/7 Electricity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Info Sidebar -->
+            <div class="space-y-6">
+                <!-- Price & Basic Info -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <div class="text-3xl font-bold text-orange-600 mb-4">₦120,000,000</div>
+                    <h1 class="text-2xl font-bold text-gray-800 mb-4">Luxury 4 Bedroom Duplex</h1>
+                    <div class="space-y-3 text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <span>📍</span>
+                            <span>Maitama, Abuja</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span>🛏️</span>
+                            <span>4 Bedrooms</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span>🚿</span>
+                            <span>3 Bathrooms</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span>📐</span>
+                            <span>350 sqm</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span>📅</span>
+                            <span>Built in 2022</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Contact Agent</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Your Name" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Your Email" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500">
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Your Phone" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500">
+                        </div>
+                        <div>
+                            <textarea placeholder="Your Message" rows="4" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-orange-600 text-white py-3 px-4 rounded-lg hover:bg-orange-700 transition-colors">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Agent Info -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Listed by</h3>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-white font-bold">
+                            JD
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-800">John Doe</div>
+                            <div class="text-sm text-gray-600">Real Estate Agent</div>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div>📞 +234 123 456 7890</div>
+                        <div>📧 john.doe@propertymarket.com</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Similar Properties -->
+        <section class="mt-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8">Similar Properties</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <img src="/images/hero.jpg" alt="Property" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800 mb-2">3 Bedroom Apartment</h3>
+                        <p class="text-orange-600 font-bold">₦85,000,000</p>
+                        <p class="text-sm text-gray-600">Lagos, Nigeria</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <img src="/images/land2.jpg" alt="Property" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800 mb-2">Commercial Land</h3>
+                        <p class="text-orange-600 font-bold">₦200,000,000</p>
+                        <p class="text-sm text-gray-600">Abuja, Nigeria</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <img src="/images/shop2.jpg" alt="Property" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800 mb-2">Shop Space</h3>
+                        <p class="text-orange-600 font-bold">₦30,000,000</p>
+                        <p class="text-sm text-gray-600">Port Harcourt, Nigeria</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="/images/logo.jpg" alt="PropertyMarket" class="h-8">
+                        <span class="text-xl font-bold">PropertyMarket</span>
+                    </div>
+                    <p class="text-gray-400">Your trusted partner in finding the perfect property.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="properties.html" class="hover:text-white">Properties</a></li>
+                        <li><a href="blog.html" class="hover:text-white">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="properties.html" class="hover:text-white">Buy Property</a></li>
+                        <li><a href="properties.html" class="hover:text-white">Rent Property</a></li>
+                        <li><a href="post.html" class="hover:text-white">Sell Property</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Property Management</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>📧 info@propertymarket.com</li>
+                        <li>📞 +234 123 456 7890</li>
+                        <li>📍 Lagos, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 PropertyMarket. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+    </script>
+</body>
+</html>
