@@ -179,7 +179,8 @@ const categoryIcons = {
     'House': ['🏠'],
     'Cars': ['🚗'],
     'Shops': ['🏢'],
-    'Land': ['🌳']
+    'Land': ['🌳'],
+    'Electronics': ['📱']
 };
 
 let currentIcon = 0;
@@ -207,7 +208,7 @@ function setCategoryIcons(category) {
     document.getElementById('preloader-icon').textContent = currentCategoryIcons[0];
 }
 
-let iconInterval = setInterval(changeIcon, 600);
+let iconInterval;
 
 // Initialize with all icons on page load
 setCategoryIcons('All');
@@ -215,6 +216,13 @@ setCategoryIcons('All');
 // Show preloader function
 function showPreloader(category = 'All') {
     const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+    
+    // Clear any existing interval
+    if (iconInterval) {
+        clearInterval(iconInterval);
+    }
+    
     setCategoryIcons(category);
     preloader.style.display = 'flex';
     preloader.style.opacity = '1';
@@ -224,7 +232,13 @@ function showPreloader(category = 'All') {
 // Hide preloader function
 function hidePreloader() {
     const preloader = document.getElementById('preloader');
-    clearInterval(iconInterval);
+    if (!preloader) return;
+    
+    if (iconInterval) {
+        clearInterval(iconInterval);
+        iconInterval = null;
+    }
+    
     preloader.style.opacity = '0';
     preloader.style.transition = 'opacity 0.3s ease-out';
     setTimeout(() => {
@@ -242,17 +256,51 @@ window.addEventListener('load', () => {
     }, 800);
 });
 
+// Navigation with preloader
+function navigateWithPreloader(url, delay = 800) {
+    showPreloader();
+    setTimeout(() => {
+        window.location.href = url;
+    }, delay);
+}
+
 // Remove duplicate DOMContentLoaded listeners and fix initialization
 document.addEventListener('DOMContentLoaded', () => {
     // Load YouTube video on page load
     loadLatestVideo();
     
-    // Category buttons with preloader
-    categoryButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const category = btn.dataset.category;
-            currentCategory = category;
-            renderListings();
+    // Navigation links with preloader
+    const navLinks = document.querySelectorAll('nav a, .mobile-nav-link, header a');
+    navLinks.forEach(link => {
+        if (!link.href || link.href === '#' || link.href.includes('javascript:')) return;
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigateWithPreloader(link.href);
+        });
+    });
+    
+    // Category buttons functionality with preloader (desktop and mobile)
+    const allCategoryButtons = document.querySelectorAll('.category-btn, .mobile-category-btn');
+    allCategoryButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const category = btn.dataset.category || btn.textContent.trim();
+            showPreloader(category);
+            setTimeout(() => {
+                try {
+                    currentCategory = category;
+                    renderListings();
+                    // Close mobile menu after selection
+                    const menu = document.getElementById('mobileMenu');
+                    if (menu) {
+                        menu.classList.add('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error rendering listings:', error);
+                } finally {
+                    hidePreloader();
+                }
+            }, 500);
         });
     });
 
