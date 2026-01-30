@@ -185,11 +185,11 @@ function hidePreloader() {
 window.addEventListener('load', () => {
     setTimeout(() => {
         hidePreloader();
-    }, 1500);
+    }, 500);
 });
 
 // Navigation with preloader
-function navigateWithPreloader(url, delay = 800) {
+function navigateWithPreloader(url, delay = 300) {
     showPreloader();
     setTimeout(() => {
         window.location.href = url;
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentCategory = category;
                 renderListings();
                 hidePreloader();
-            }, 500);
+            }, 300);
         });
     });
 
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 renderListings();
                 hidePreloader();
-            }, 400);
+            }, 200);
         }
     });
 });

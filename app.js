@@ -41,7 +41,7 @@ const YOUTUBE_CONFIG = {
 function loadLatestVideo() {
     document.getElementById('youtube-widget').innerHTML = `
         <iframe class="w-full h-[250px] rounded" 
-                src="https://www.youtube.com/embed/${YOUTUBE_CONFIG.latestVideoId}?autoplay=1&mute=1" 
+                src="https://www.youtube.com/embed/${YOUTUBE_CONFIG.latestVideoId}?mute=1" 
                 frameborder="0" allowfullscreen>
         </iframe>
     `;
@@ -62,7 +62,7 @@ function loadLatestVideo() {
       scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
     });
 
-// Listings data
+// Listings data - Extended
 const listingsData = [
     {
         title: "Luxury 4 Bedroom Duplex - Abuja",
@@ -71,46 +71,70 @@ const listingsData = [
         image: "images/hero.jpg"
     },
     {
-        title: "Commercial Land",
+        title: "Commercial Land - Lagos",
         price: "150,000,000",
         Category: "Land",
         image: "/images/land3.jpg"
     },
     {
-        title: "Commercial Toyota",
-        price: "150,000,000",
+        title: "Commercial Toyota Camry 2020",
+        price: "15,000,000",
         Category: "Cars",
         image: "/images/car2.jpg"
     },
     {
         title: "2 Bedroom Apartment - Lagos",
-        price: "200,000,000",
+        price: "80,000,000",
         Category: "House",
         image: "/images/hero.jpg"
     },
     {
-        title: "Shop - Mararaba",
-        price: "120,000,000",
+        title: "Shop Space - Mararaba",
+        price: "25,000,000",
         Category: "Shops",
         image: "/images/shop2.jpg"
     },
     {
-        title: "Kwuba Extension",
-        price: "120,000,000",
-        Category: "land",
+        title: "Land in Kwuba Extension",
+        price: "45,000,000",
+        Category: "Land",
         image: "/images/land1.jpg"
     },
     {
         title: "GLK Mercedes Benz 2015",
-        price: "120,000,000",
+        price: "35,000,000",
         Category: "Cars",
         image: "/images/car2.jpg"
     },
     {
-        title: "Open Square - Grarimpa",
-        price: "120,000,000",
-        Category: "land",
+        title: "3 Bedroom Bungalow - Abuja",
+        price: "95,000,000",
+        Category: "House",
+        image: "/images/hero.jpg"
+    },
+    {
+        title: "Commercial Shop - Lagos Island",
+        price: "40,000,000",
+        Category: "Shops",
+        image: "/images/shop2.jpg"
+    },
+    {
+        title: "Residential Land - Port Harcourt",
+        price: "30,000,000",
+        Category: "Land",
         image: "/images/land2.jpg"
+    },
+    {
+        title: "Honda Accord 2018",
+        price: "12,000,000",
+        Category: "Cars",
+        image: "/images/car1.jpg"
+    },
+    {
+        title: "5 Bedroom Mansion - Victoria Island",
+        price: "250,000,000",
+        Category: "House",
+        image: "/images/hero.jpg"
     }
 ];
 
@@ -132,11 +156,15 @@ function renderListings(){
     }
     
     listingsContainer.innerHTML="";
-    const searchValue = searchInput ? searchInput.value.toLowerCase() : '';
+    const desktopSearchInput = document.getElementById("SearchInput");
+    const mobileSearchInput = document.getElementById("mobileSearchInput");
+    const searchValue = (desktopSearchInput ? desktopSearchInput.value.toLowerCase() : '') || 
+                       (mobileSearchInput ? mobileSearchInput.value.toLowerCase() : '');
     
     const filtered = listingsData.filter(item =>{
-        const matchesCategory = currentCategory === "All" || item.Category === currentCategory;
-        const matchesSearch = item.title.toLowerCase().includes(searchValue);
+        const matchesCategory = currentCategory === "All" || item.Category.toLowerCase() === currentCategory.toLowerCase();
+        const matchesSearch = item.title.toLowerCase().includes(searchValue) || 
+                             item.Category.toLowerCase().includes(searchValue);
         return matchesCategory && matchesSearch;
     });
 
@@ -145,20 +173,28 @@ function renderListings(){
         <div class="bg-white rounded shadow-md card-hover overflow-hidden group animate-fade-in flex flex-col h-full" style="animation-delay: ${index * 0.1}s">
             <div class="relative overflow-hidden">
                 <img src="${item.image}" alt="${item.title}" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
-                <div class="absolute top-3 right-3 bg-orange-600 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                <div class="absolute top-2 right-2 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">
                     ${item.Category}
                 </div>
             </div>
             <div class="p-4 flex flex-col flex-grow">
                 <h3 class="font-semibold text-gray-800 mb-2 h-12 line-clamp-2 group-hover:text-orange-600 transition-colors text-center">${item.title}</h3>
                 <p class="text-2xl font-bold text-orange-600 mb-3">${formatPrice(item.price)}</p>
-                <button class="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 px-4 rounded-lg font-medium hover:from-orange-600 hover:to-orange-700 transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg mt-auto">
+                <button class="view-details-btn w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 px-4 rounded-lg font-medium hover:from-orange-600 hover:to-orange-700 transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg mt-auto">
                     View Details
                 </button>
             </div>
         </div>
         `;
         listingsContainer.innerHTML += listingHTML;
+    });
+    
+    // Add event listeners to View Details buttons
+    const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+    viewDetailsButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            window.location.href = 'property-details.html';
+        });
     });
 }
 
@@ -248,20 +284,26 @@ function hidePreloader() {
 
 // Initial page load - Fixed timing
 window.addEventListener('load', () => {
-    // Ensure all content is loaded before hiding preloader
-    setTimeout(() => {
-        hidePreloader();
-        // Initialize listings after preloader is hidden
-        renderListings();
-    }, 800);
+    hidePreloader();
+    renderListings();
 });
 
-// Navigation with preloader
-function navigateWithPreloader(url, delay = 800) {
+// Also ensure it runs when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Fallback to ensure listings render
+    setTimeout(() => {
+        if (document.getElementById('listings')) {
+            renderListings();
+        }
+    }, 100);
+});
+
+// Navigation with preloader - Optimized
+function navigateWithPreloader(url) {
     showPreloader();
     setTimeout(() => {
         window.location.href = url;
-    }, delay);
+    }, 100);
 }
 
 // Remove duplicate DOMContentLoaded listeners and fix initialization
@@ -269,59 +311,67 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load YouTube video on page load
     loadLatestVideo();
     
-    // Navigation links with preloader
-    const navLinks = document.querySelectorAll('nav a, .mobile-nav-link, header a');
-    navLinks.forEach(link => {
-        if (!link.href || link.href === '#' || link.href.includes('javascript:')) return;
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            navigateWithPreloader(link.href);
-        });
-    });
-    
-    // Category buttons functionality with preloader (desktop and mobile)
+    // Category buttons functionality (desktop and mobile)
     const allCategoryButtons = document.querySelectorAll('.category-btn, .mobile-category-btn');
     allCategoryButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             const category = btn.dataset.category || btn.textContent.trim();
-            showPreloader(category);
-            setTimeout(() => {
-                try {
-                    currentCategory = category;
-                    renderListings();
-                    // Close mobile menu after selection
-                    const menu = document.getElementById('mobileMenu');
-                    if (menu) {
-                        menu.classList.add('hidden');
-                    }
-                } catch (error) {
-                    console.error('Error rendering listings:', error);
-                } finally {
-                    hidePreloader();
-                }
-            }, 500);
+            currentCategory = category;
+            renderListings();
+            // Close mobile menu after selection
+            const menu = document.getElementById('mobileMenu');
+            if (menu) {
+                menu.classList.add('hidden');
+            }
         });
     });
 
-    // Search functionality
-    const searchInput = document.getElementById('SearchInput');
-    const searchButton = document.querySelector('button[class*="bg-PropertyMarket"]');
+    // Search functionality (both desktop and mobile)
+    const desktopSearchInput = document.getElementById('SearchInput');
+    const mobileSearchInput = document.getElementById('mobileSearchInput');
+    const desktopSearchButton = document.querySelector('button[class*="bg-PropertyMarket"]');
+    const mobileSearchButton = document.getElementById('mobileSearchBtn');
     
-    if (searchInput) {
-        // Search on Enter key
-        searchInput.addEventListener('keypress', (e) => {
+    // Desktop search
+    if (desktopSearchInput) {
+        desktopSearchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 renderListings();
             }
         });
     }
     
-    // Search button functionality
-    if (searchButton) {
-        searchButton.addEventListener('click', (e) => {
+    if (desktopSearchButton) {
+        desktopSearchButton.addEventListener('click', (e) => {
             e.preventDefault();
             renderListings();
+        });
+    }
+    
+    // Mobile search
+    if (mobileSearchInput) {
+        mobileSearchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                renderListings();
+                // Close mobile menu after search
+                const menu = document.getElementById('mobileMenu');
+                if (menu) {
+                    menu.classList.add('hidden');
+                }
+            }
+        });
+    }
+    
+    if (mobileSearchButton) {
+        mobileSearchButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            renderListings();
+            // Close mobile menu after search
+            const menu = document.getElementById('mobileMenu');
+            if (menu) {
+                menu.classList.add('hidden');
+            }
         });
     }
 
@@ -331,6 +381,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btn && menu) {
         btn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
+        });
+    }
+
+    // Scroll buttons functionality
+    const scrollLeft = document.getElementById('scrollLeft');
+    const scrollRight = document.getElementById('scrollRight');
+    const scrollContainer = document.getElementById('scrollContainer');
+    
+    if (scrollLeft && scrollContainer) {
+        scrollLeft.addEventListener('click', () => {
+            scrollContainer.scrollBy({ left: -200, behavior: 'smooth' });
+        });
+    }
+    
+    if (scrollRight && scrollContainer) {
+        scrollRight.addEventListener('click', () => {
+            scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
         });
     }
 });
