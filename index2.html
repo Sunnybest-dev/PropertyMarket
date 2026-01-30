@@ -61,7 +61,8 @@
       <nav class="hidden lg:flex items-center gap-6 flex-1">
         <a href="/properties.html" class="text-sm font-semibold hover:text-orange-500 transition-colors">Properties</a>
         <a href="/blog.html" class="text-sm font-semibold hover:text-orange-500 transition-colors">Blog</a>
-        <a href="/dashboard.html" class="text-sm font-semibold hover:text-orange-500 transition-colors">Account</a>
+        <a href="buyer-dashboard.html" class="text-sm font-semibold hover:text-orange-500 transition-colors">Account</a>
+        <a href="/favorites.html" class="text-sm font-semibold hover:text-orange-500 transition-colors">Favorites</a>
       </nav>
       
       <!-- Desktop Search -->
@@ -103,8 +104,11 @@
         <a href="/blog.html" class="block text-sm font-semibold hover:text-orange-500 transition-colors">
           Blog
         </a>
-        <a href="/dashboard.html" class="block text-sm font-semibold hover:text-orange-500 transition-colors">
+        <a href="buyer-dashboard.html" class="block text-sm font-semibold hover:text-orange-500 transition-colors">
           Account
+        </a>
+        <a href="/favorites.html" class="block text-sm font-semibold hover:text-orange-500 transition-colors">
+          Favorites
         </a>
         <div class="border-t pt-3 mt-3">
           <h4 class="text-sm font-bold text-orange-600 mb-2">Categories</h4>
@@ -114,6 +118,16 @@
             <a href="#" class="mobile-category-btn block text-sm hover:text-orange-500 transition-colors" data-category="Land">Lands</a>
             <a href="#" class="mobile-category-btn block text-sm hover:text-orange-500 transition-colors" data-category="Shops">Shops</a>
             <a href="#" class="mobile-category-btn block text-sm hover:text-orange-500 transition-colors" data-category="Cars">Cars</a>
+          </div>
+        </div>
+        <div class="border-t pt-3 mt-3">
+          <h4 class="text-sm font-bold text-orange-600 mb-2">Filters</h4>
+          <div class="space-y-2 pl-2">
+            <a href="#" class="mobile-category-btn block text-sm hover:text-orange-500 transition-colors" data-category="Newest">🆕 Newest</a>
+            <a href="#" class="mobile-category-btn block text-sm hover:text-orange-500 transition-colors" data-category="Verified">✅ Verified Sellers</a>
+            <a href="#" class="mobile-category-btn block text-sm hover:text-orange-500 transition-colors" data-category="Under50M">💰 Under ₦50M</a>
+            <a href="#" class="mobile-category-btn block text-sm hover:text-orange-500 transition-colors" data-category="50M-100M">💰 ₦50M - ₦100M</a>
+            <a href="#" class="mobile-category-btn block text-sm hover:text-orange-500 transition-colors" data-category="Over100M">💰 Over ₦100M</a>
           </div>
         </div>
         <div class="border-t pt-3 mt-3 space-y-2">
@@ -150,8 +164,20 @@
           <li class="category-btn px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600 cursor-pointer transition-all duration-200" data-category="Land">Lands</li>
           <li class="category-btn px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600 cursor-pointer transition-all duration-200" data-category="Shops">Shops</li>
           <li class="category-btn px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600 cursor-pointer transition-all duration-200" data-category="Cars">Cars</li>
-          <li class="category-btn px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600 cursor-pointer transition-all duration-200" data-category="Electronics">Electronics</li>
+          <!-- <li class="category-btn px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600 cursor-pointer transition-all duration-200" data-category="Electronics">Electronics</li> -->
         </ul>
+        
+        <h3 class="font-bold text-lg mb-4 mt-6 text-orange-600 underline">Price Range</h3>
+        <div class="px-3 py-2">
+          <div class="mb-3">
+            <label class="block text-xs text-gray-600 mb-1">Budget: ₦0 - ₦200M</label>
+            <input type="range" min="0" max="200" value="200" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider" id="priceRange">
+            <div class="flex justify-between text-xs text-gray-500 mt-1">
+              <span>₦0</span>
+              <span id="rangeValue">₦200M</span>
+            </div>
+          </div>
+        </div>
       </aside>
 
 
@@ -348,10 +374,19 @@
         <div class="absolute top-2 right-2 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">
           House
         </div>
+        <div class="absolute bottom-2 left-2 bg-green-600 text-white px-2 py-1 rounded text-xs font-medium">
+          ✓ Verified
+        </div>
+        <button class="absolute top-2 left-2 p-1 bg-white rounded-full shadow-sm hover:bg-gray-50">
+          <svg class="w-4 h-4 text-gray-400 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </button>
       </div>
       <div class="p-4">
         <h3 class="font-semibold text-gray-800 mb-2">Luxury 4 Bedroom Duplex - Abuja</h3>
-        <p class="text-2xl font-bold text-orange-600 mb-3">₦120,000,000</p>
+        <p class="text-2xl font-bold text-orange-600 mb-2">₦120,000,000</p>
+        <p class="text-sm text-gray-500 mb-3">👁️ 234 views</p>
         <button onclick="window.location.href='property-details.html'" class="w-full bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700">
           View Details
         </button>
@@ -365,10 +400,16 @@
         <div class="absolute top-2 right-2 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">
           Land
         </div>
+        <button class="absolute top-2 left-2 p-1 bg-white rounded-full shadow-sm hover:bg-gray-50">
+          <svg class="w-4 h-4 text-gray-400 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </button>
       </div>
       <div class="p-4">
         <h3 class="font-semibold text-gray-800 mb-2">Commercial Land - Lagos</h3>
-        <p class="text-2xl font-bold text-orange-600 mb-3">₦150,000,000</p>
+        <p class="text-2xl font-bold text-orange-600 mb-2">₦150,000,000</p>
+        <p class="text-sm text-gray-500 mb-3">👁️ 189 views</p>
         <button onclick="window.location.href='property-details.html'" class="w-full bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700">
           View Details
         </button>
@@ -382,10 +423,16 @@
         <div class="absolute top-2 right-2 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">
           Cars
         </div>
+        <button class="absolute top-2 left-2 p-1 bg-white rounded-full shadow-sm hover:bg-gray-50">
+          <svg class="w-4 h-4 text-gray-400 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </button>
       </div>
       <div class="p-4">
         <h3 class="font-semibold text-gray-800 mb-2">Toyota Camry 2020</h3>
-        <p class="text-2xl font-bold text-orange-600 mb-3">₦15,000,000</p>
+        <p class="text-2xl font-bold text-orange-600 mb-2">₦15,000,000</p>
+        <p class="text-sm text-gray-500 mb-3">👁️ 156 views</p>
         <button onclick="window.location.href='property-details.html'" class="w-full bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700">
           View Details
         </button>
@@ -399,10 +446,19 @@
         <div class="absolute top-2 right-2 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">
           Shops
         </div>
+        <div class="absolute bottom-2 left-2 bg-green-600 text-white px-2 py-1 rounded text-xs font-medium">
+          ✓ Verified
+        </div>
+        <button class="absolute top-2 left-2 p-1 bg-white rounded-full shadow-sm hover:bg-gray-50">
+          <svg class="w-4 h-4 text-gray-400 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </button>
       </div>
       <div class="p-4">
         <h3 class="font-semibent text-gray-800 mb-2">Shop Space - Mararaba</h3>
         <p class="text-2xl font-bold text-orange-600 mb-3">₦25,000,000</p>
+        <p class="text-sm text-gray-500 mb-3">👁️ 234 views</p>
         <button onclick="window.location.href='property-details.html'" class="w-full bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700">
           View Details
         </button>
@@ -416,10 +472,16 @@
         <div class="absolute top-2 right-2 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">
           Land
         </div>
+        <button class="absolute top-2 left-2 p-1 bg-white rounded-full shadow-sm hover:bg-gray-50">
+          <svg class="w-4 h-4 text-gray-400 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </button>
       </div>
       <div class="p-4">
         <h3 class="font-semibold text-gray-800 mb-2">Land in Kwuba Extension</h3>
         <p class="text-2xl font-bold text-orange-600 mb-3">₦45,000,000</p>
+        <p class="text-sm text-gray-500 mb-3">👁️ 234 views</p>
         <button onclick="window.location.href='property-details.html'" class="w-full bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700">
           View Details
         </button>
@@ -433,10 +495,16 @@
         <div class="absolute top-2 right-2 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">
           House
         </div>
+        <button class="absolute top-2 left-2 p-1 bg-white rounded-full shadow-sm hover:bg-gray-50">
+          <svg class="w-4 h-4 text-gray-400 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </button>
       </div>
       <div class="p-4">
         <h3 class="font-semibold text-gray-800 mb-2">3 Bedroom Bungalow - Abuja</h3>
         <p class="text-2xl font-bold text-orange-600 mb-3">₦95,000,000</p>
+        <p class="text-sm text-gray-500 mb-3">👁️ 234 views</p>
         <button onclick="window.location.href='property-details.html'" class="w-full bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700">
           View Details
         </button>
@@ -450,10 +518,16 @@
         <div class="absolute top-2 right-2 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">
           Cars
         </div>
+        <button class="absolute top-2 left-2 p-1 bg-white rounded-full shadow-sm hover:bg-gray-50">
+          <svg class="w-4 h-4 text-gray-400 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </button>
       </div>
       <div class="p-4">
         <h3 class="font-semibold text-gray-800 mb-2">Honda Accord 2018</h3>
         <p class="text-2xl font-bold text-orange-600 mb-3">₦12,000,000</p>
+        <p class="text-sm text-gray-500 mb-3">👁️ 234 views</p>
         <button onclick="window.location.href='property-details.html'" class="w-full bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700">
           View Details
         </button>
@@ -467,10 +541,16 @@
         <div class="absolute top-2 right-2 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">
           Land
         </div>
+        <button class="absolute top-2 left-2 p-1 bg-white rounded-full shadow-sm hover:bg-gray-50">
+          <svg class="w-4 h-4 text-gray-400 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </button>
       </div>
       <div class="p-4">
         <h3 class="font-semibold text-gray-800 mb-2">Residential Land - Port Harcourt</h3>
         <p class="text-2xl font-bold text-orange-600 mb-3">₦30,000,000</p>
+        <p class="text-sm text-gray-500 mb-3">👁️ 234 views</p>
         <button onclick="window.location.href='property-details.html'" class="w-full bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700">
           View Details
         </button>
@@ -525,9 +605,37 @@
 
   <style>
   .card-hover:hover { transform: translateY(-4px); }
+  .slider::-webkit-slider-thumb {
+    appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #f68b1e;
+    cursor: pointer;
+  }
+  .slider::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #f68b1e;
+    cursor: pointer;
+    border: none;
+  }
   </style>
   
   <script src="app.js"></script>
   <script src="menu.js"></script>
+  <script>
+    // Price range slider functionality
+    const priceRange = document.getElementById('priceRange');
+    const rangeValue = document.getElementById('rangeValue');
+    
+    if (priceRange && rangeValue) {
+      priceRange.addEventListener('input', function() {
+        const value = this.value;
+        rangeValue.textContent = value == 200 ? '₦200M+' : '₦' + value + 'M';
+      });
+    }
+  </script>
 </body>
 </html>
